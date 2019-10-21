@@ -25,14 +25,13 @@ type user struct {
 	Email string `json:"email" xml:"email" form:"email" query:"email"`
 }
 
-func init() {
+func registerNewUser(w http.ResponseWriter, r *http.Request) {
+
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-}
 
-func registerNewUser(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		panic(err)
